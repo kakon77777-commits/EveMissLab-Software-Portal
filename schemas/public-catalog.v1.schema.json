@@ -1,0 +1,123 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "generated_by": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "products": {
+      "type": "array",
+      "maxItems": 500,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{1,79}$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 140
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 360
+          },
+          "kind": {
+            "enum": [
+              "tool",
+              "software",
+              "demo",
+              "documentation"
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 45
+            },
+            "maxItems": 12
+          },
+          "release_stage": {
+            "enum": [
+              "preview",
+              "published"
+            ]
+          },
+          "launch_path": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^/(tools|apps)/[a-z0-9/-]+/?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "links": {
+            "type": "array",
+            "maxItems": 25,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "type": {
+                  "enum": [
+                    "website",
+                    "demo",
+                    "documentation",
+                    "release",
+                    "source_repo",
+                    "package_registry"
+                  ]
+                },
+                "url": {
+                  "type": "string",
+                  "pattern": "^https://",
+                  "format": "uri"
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              },
+              "required": [
+                "type",
+                "url",
+                "label"
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "summary",
+          "kind",
+          "tags",
+          "release_stage",
+          "launch_path",
+          "links"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "generated_by",
+    "products"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

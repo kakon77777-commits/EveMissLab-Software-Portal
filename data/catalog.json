@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "generated_by": "manually-curated-portal",
+  "products": [
+    {
+      "id": "eml-json-tools",
+      "name": "JSON 工作臺",
+      "summary": "直接在瀏覽器內驗證、格式化、壓縮與下載 JSON。資料不需上傳到伺服器。",
+      "kind": "tool",
+      "tags": ["JSON", "開發者工具", "本機處理"],
+      "release_stage": "preview",
+      "launch_path": "/tools/json/",
+      "links": []
+    }
+  ]
+}
